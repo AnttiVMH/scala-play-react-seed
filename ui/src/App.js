@@ -31,11 +31,14 @@ class App extends Component {
   async componentDidMount() {
     Client.getSummary(summary => {
       this.setState({
-        title: 'Club App'
+        title: summary
       });
     });
   }
 
+  /**
+   * Function for getting the clubs from backend database.
+   */
   viewClubs() {
     Client.getClubs(c => {
       this.setState({
@@ -44,6 +47,9 @@ class App extends Component {
     });
   }
 
+  /*
+  We are using switch in render() so that we can navigate to separate pages.
+   */
 
   render() {
 
@@ -66,6 +72,11 @@ class App extends Component {
 
   }
 
+  /**
+   * Function for showing the clubs page to the user.
+   * @returns {*}
+   * @constructor
+   */
   Clubs() {
     let clubs = this.state.clubs ? this.state.clubs : [];
     let clubArray = [];
@@ -86,6 +97,11 @@ class App extends Component {
     );
   }
 
+  /**
+   * Function for showing the home page.
+   * @returns {*}
+   * @constructor
+   */
   Home() {
     return (
       <div className='App'>
