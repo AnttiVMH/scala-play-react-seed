@@ -9,6 +9,11 @@ function getSummary(cb) {
     .then(cb);
 }
 
+/**
+ * Function for getting all clubs from the database.
+ * @param cb callback
+ * @returns {Promise<Response>}
+ */
 function getClubs(cb){
   return fetch('/api/clubs', {
     accept: "application/json"
@@ -18,15 +23,12 @@ function getClubs(cb){
     .then(cb);
 }
 
-function testDB(cb){
-  return fetch('/api/testClubs', {
-    accept: "application/json"
-  })
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(cb);
-}
-
+/**
+ * Function for adding a new club into the database.
+ * @param s stateobject from the form
+ * @param cb callback
+ * @returns {Promise<Response>}
+ */
 function addClub(s,cb){
   return fetch('/api/clubs', {
     method: "post",
@@ -56,5 +58,5 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { getSummary, getClubs, testDB, addClub };
+const Client = { getSummary, getClubs, addClub };
 export default Client;

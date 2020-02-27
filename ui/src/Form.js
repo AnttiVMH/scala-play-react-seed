@@ -7,6 +7,13 @@ export default class Form extends React.Component {
     members: [{id: 'member0', name: ''}],
   };
 
+  /**
+   * Function for handling input.
+   * If classname of the e.target matches 'Member_name',
+   * then we handle a members change.
+   * If not then we work with clubName
+   * @param e the change event
+   */
   change = e => {
     if (['Member_name'].includes(e.currentTarget.className)) {
       let members = [...this.state.members];
@@ -17,6 +24,10 @@ export default class Form extends React.Component {
     }
   };
 
+  /**
+   * Function for submitting a club.
+   * After adding we clear the state of the form.
+   */
   onSubmit() {
     if (this.state.clubName.trim() === '') {
       this.setState({'clubName': 'Club must have a name!'})
@@ -27,11 +38,19 @@ export default class Form extends React.Component {
     }
   };
 
+  /**
+   * Function for adding member inputs to the form.
+   */
   addMember() {
     var newMember = {id: `member${this.state.members.length}`, name: ''};
     this.setState((prevState) => ({members: [...prevState.members, newMember]}));
   };
 
+  /**
+   * This render function generates the required inputs
+   * based on the this.state.members field.
+   * @returns {*}
+   */
   render() {
     return (
       <div>
